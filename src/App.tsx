@@ -1,7 +1,7 @@
 import "./App.css";
 import { useMemo } from "react";
 
-import Home from "./Home";
+import Test from "./components/LandingPage";
 
 import * as anchor from "@project-serum/anchor";
 import { clusterApiUrl } from "@solana/web3.js";
@@ -45,7 +45,7 @@ const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
 const theme = createTheme({
     palette: {
-        type: 'dark',
+        type: 'light',
     },
     overrides: {
         MuiButtonBase: {
@@ -56,7 +56,9 @@ const theme = createTheme({
         MuiButton: {
             root: {
                 textTransform: undefined,
-                padding: '12px 16px',
+                padding: '4px 12px',
+                color: "white",
+                borderRadius: "5rem",
             },
             startIcon: {
                 marginRight: 8,
@@ -65,6 +67,14 @@ const theme = createTheme({
                 marginLeft: 8,
             },
         },
+        MuiDialogTitle: {
+          root: {
+            backgroundColor: "#FFFFFF",
+            '& h2': {
+              color: 'white'
+            }
+          }
+      }
     },
 });
 
@@ -87,14 +97,14 @@ const App = () => {
         <ConnectionProvider endpoint={endpoint}>
           <WalletProvider wallets={wallets} autoConnect={true}>
             <WalletDialogProvider>
-              <Home
-                candyMachineId={candyMachineId}
-                config={config}
-                connection={connection}
-                startDate={startDateSeed}
-                treasury={treasury}
-                txTimeout={txTimeout}
-              />
+            <Test
+              candyMachineId={candyMachineId}
+              config={config}
+              connection={connection}
+              startDate={startDateSeed}
+              treasury={treasury}
+              txTimeout={txTimeout}
+            />
             </WalletDialogProvider>
           </WalletProvider>
         </ConnectionProvider>

@@ -1,6 +1,6 @@
+import Countdown from "react-countdown";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Countdown from "react-countdown";
 import { Button, CircularProgress, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
@@ -179,10 +179,10 @@ const Home = (props: HomeProps) => {
 
       {wallet && <p>Remaining: {itemsRemaining}</p>}
 
+      {!wallet ? <ConnectButton>Connect Wallet</ConnectButton> : null}
+
+      {wallet ?
       <MintContainer>
-        {!wallet ? (
-          <ConnectButton>Connect Wallet</ConnectButton>
-        ) : (
           <MintButton
             disabled={isSoldOut || isMinting || !isActive}
             onClick={onMint}
@@ -205,8 +205,8 @@ const Home = (props: HomeProps) => {
               />
             )}
           </MintButton>
-        )}
       </MintContainer>
+      : null}
 
       <Snackbar
         open={alertState.open}
