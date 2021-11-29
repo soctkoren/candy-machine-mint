@@ -6,7 +6,7 @@ import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 import Countdown from "react-countdown";
-
+import { useNavigate } from "react-router-dom";
 import './LandingPage.css'
 import * as anchor from "@project-serum/anchor";
 
@@ -19,7 +19,7 @@ import {
 } from "../../candy-machine";
 
 
-export interface LandingPage {
+export interface LandingPageProps {
     candyMachineId: anchor.web3.PublicKey;
     config: anchor.web3.PublicKey;
     connection: anchor.web3.Connection;
@@ -50,7 +50,8 @@ const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
     );
 };
 
-export default function LandingPage(props: LandingPage) {
+export default function LandingPage(props: LandingPageProps) {
+    let navigate = useNavigate();
     const [balance, setBalance] = useState<number>();
     const [isActive, setIsActive] = useState(false); // true when countdown completes
     const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
@@ -224,13 +225,11 @@ export default function LandingPage(props: LandingPage) {
                     <div className="main_left_content">
                         <h1 className="main_left_header">{"Hi! We're "}<br />{"Not Not Larva Labs."}</h1>
                         <p className="main_left_content_text">{"We don't have lawyers cause that's lame, but we thought we should put something here to"}<br />{"remind you that we are, in fact, definitely not Not Larva Labs."}</p>
-                        <button className="main_button">More About Us</button>
+                        <button className="main_button" onClick={() => navigate("./about", { replace: false })}>More About Us</button>
                     </div>
                     <div className="main_right_content">
                         <img src="/static/main_logo.svg" alt="Not Not Larva Labs Main Logo" width={298} height={189} />
-                        <div>
-                            {/* {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>} */}
-
+                        {/* <div>
                             {wallet && <p>Total Available: {itemsAvailable}</p>}
 
                             {wallet && <p>Redeemed: {itemsRedeemed}</p>}
@@ -263,7 +262,7 @@ export default function LandingPage(props: LandingPage) {
                                     </MintButton>
                                 </MintContainer>
                                 : null}
-                        </div>
+                        </div> */}
                     </div>
                 </main>
             </div>

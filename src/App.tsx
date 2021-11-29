@@ -1,8 +1,8 @@
 import "./App.css";
 import { useMemo } from "react";
-
+import { Routes, Route } from "react-router-dom";
 import Test from "./components/LandingPage";
-
+import About from "./About";
 import * as anchor from "@project-serum/anchor";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
@@ -96,15 +96,18 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <ConnectionProvider endpoint={endpoint}>
           <WalletProvider wallets={wallets} autoConnect={true}>
-            <WalletDialogProvider>
-            <Test
-              candyMachineId={candyMachineId}
-              config={config}
-              connection={connection}
-              startDate={startDateSeed}
-              treasury={treasury}
-              txTimeout={txTimeout}
-            />
+            <WalletDialogProvider>              
+              <Routes>
+                <Route path="/" element={<Test
+                  candyMachineId={candyMachineId}
+                  config={config}
+                  connection={connection}
+                  startDate={startDateSeed}
+                  treasury={treasury}
+                  txTimeout={txTimeout}
+                />} />
+                <Route path="about" element={<About />} />
+              </Routes>
             </WalletDialogProvider>
           </WalletProvider>
         </ConnectionProvider>
