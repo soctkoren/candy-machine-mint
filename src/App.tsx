@@ -1,8 +1,6 @@
 import "./App.css";
 import { useMemo } from "react";
-import { Routes, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
-import About from "./components/About/About";
 import * as anchor from "@project-serum/anchor";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
