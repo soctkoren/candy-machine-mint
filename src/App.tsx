@@ -1,8 +1,8 @@
 import "./App.css";
 import { useMemo } from "react";
 import { Routes, Route } from "react-router-dom";
-import Test from "./components/LandingPage";
-import About from "./About";
+import LandingPage from "./components/LandingPage";
+import About from "./components/About/About";
 import * as anchor from "@project-serum/anchor";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
@@ -44,38 +44,38 @@ const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE!, 10);
 const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
 const theme = createTheme({
-    palette: {
-        type: 'light',
+  palette: {
+    type: "light",
+  },
+  overrides: {
+    MuiButtonBase: {
+      root: {
+        justifyContent: "flex-start",
+      },
     },
-    overrides: {
-        MuiButtonBase: {
-            root: {
-                justifyContent: 'flex-start',
-            },
-        },
-        MuiButton: {
-            root: {
-                textTransform: undefined,
-                padding: '4px 12px',
-                color: "white",
-                borderRadius: "5rem",
-            },
-            startIcon: {
-                marginRight: 8,
-            },
-            endIcon: {
-                marginLeft: 8,
-            },
-        },
-        MuiDialogTitle: {
-          root: {
-            backgroundColor: "#FFFFFF",
-            '& h2': {
-              color: 'white'
-            }
-          }
-      }
+    MuiButton: {
+      root: {
+        textTransform: undefined,
+        padding: "4px 12px",
+        color: "white",
+        borderRadius: "5rem",
+      },
+      startIcon: {
+        marginRight: 8,
+      },
+      endIcon: {
+        marginLeft: 8,
+      },
     },
+    MuiDialogTitle: {
+      root: {
+        backgroundColor: "#FFFFFF",
+        "& h2": {
+          color: "white",
+        },
+      },
+    },
+  },
 });
 
 const App = () => {
@@ -83,35 +83,32 @@ const App = () => {
 
   const wallets = useMemo(
     () => [
-        getPhantomWallet(),
-        getSlopeWallet(),
-        getSolflareWallet(),
-        getSolletWallet({ network }),
-        getSolletExtensionWallet({ network })
+      getPhantomWallet(),
+      getSlopeWallet(),
+      getSolflareWallet(),
+      getSolletWallet({ network }),
+      getSolletExtensionWallet({ network }),
     ],
     []
   );
 
   return (
-      <ThemeProvider theme={theme}>
-        <ConnectionProvider endpoint={endpoint}>
-          <WalletProvider wallets={wallets} autoConnect={true}>
-            <WalletDialogProvider>              
-              <Routes>
-                <Route path="/" element={<Test
-                  candyMachineId={candyMachineId}
-                  config={config}
-                  connection={connection}
-                  startDate={startDateSeed}
-                  treasury={treasury}
-                  txTimeout={txTimeout}
-                />} />
-                <Route path="about" element={<About />} />
-              </Routes>
-            </WalletDialogProvider>
-          </WalletProvider>
-        </ConnectionProvider>
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={wallets} autoConnect={true}>
+          <WalletDialogProvider>
+            <LandingPage
+              candyMachineId={candyMachineId}
+              config={config}
+              connection={connection}
+              startDate={startDateSeed}
+              treasury={treasury}
+              txTimeout={txTimeout}
+            />
+          </WalletDialogProvider>
+        </WalletProvider>
+      </ConnectionProvider>
+    </ThemeProvider>
   );
 };
 

@@ -1,9 +1,9 @@
 .landing_page {
-    padding: 0 2rem;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 1170px;
 }
 
 .content {
@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 1170px;
+    width: 100%;
 }
 
 .header {
@@ -32,8 +32,10 @@
 }
 
 .main {
+    width: 100%;
     display: flex;
     padding: 0px 40px;
+    justify-content: space-between;
     flex: 1;
 }
 
@@ -133,11 +135,13 @@
 }
 
 .main_left_content {
+    padding-left: 40px;
     width: 545px;
     flex: 1;
 }
 
 .main_right_content {
+    padding-right: 30px;
     display: flex;
     flex: 1;
     justify-content: center;
@@ -210,6 +214,10 @@
 .MuiAvatar-img {
     margin-left: 7px;
     margin-right: 5px;
+}
+
+.logo_button {
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {

@@ -1,0 +1,20 @@
+.about_page {
+    width: 90%;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.about_page h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+
+.about_page p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.pink {
+    font-weight: 700;
+    color: #FF02B4;
+}
