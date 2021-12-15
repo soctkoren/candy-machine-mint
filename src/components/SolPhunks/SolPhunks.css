@@ -1,0 +1,51 @@
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}
+
+ul.pagination {
+    width: 800px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.items {
+    width: 1100px;
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+}
+
+.item-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #FF02B4;
+    font-weight: 700;
+}
+
+.item-img {
+    width: 90px;
+    height: 90px;
+}
+
+.lazy-img {
+    object-fit: fill;
+}
+
+.page-item {
+    cursor: pointer;
+}
+
+.all_phunks {
+    margin: 0px;
+    font-size: 50px;
+}
+
+.phunk_count {
+    margin: 0px 0px 40px 0px;
+    font-weight: 600;
+    color: #FF02B4;
+}

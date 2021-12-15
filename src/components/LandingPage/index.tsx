@@ -7,6 +7,7 @@ import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 import Countdown from "react-countdown";
 import About from "../About/About";
+import SolPhunks from "../SolPhunks/SolPhunks";
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
@@ -209,7 +210,12 @@ export default function LandingPage(props: LandingPageProps) {
                 About
               </h1>
               {/* <h1 className="header_item">FAQ/History</h1>   */}
-              <h1 className="header_item">Marketplace</h1>
+              <h1
+                className="header_item"
+                onClick={() => navigate("./solphunks", { replace: false })}
+              >
+                Marketplace
+              </h1>
               <img
                 className="header_item"
                 src="/static/twitter.svg"
@@ -332,6 +338,7 @@ export default function LandingPage(props: LandingPageProps) {
           }
         />
         <Route path="about" element={<About />} />
+        <Route path="solphunks" element={<SolPhunks />} />
       </Routes>
     </div>
   );
