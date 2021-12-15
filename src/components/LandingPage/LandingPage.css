@@ -332,6 +332,41 @@
     animation-delay: 1.2s;
 }
 
+.minter-container .MuiButton-contained {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: none;
+    color: white;
+    width: 300px;
+    height: 300px;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    text-transform: uppercase;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.minter-container .MuiButton-root {
+    padding: 15px 0px, 0px, 0px;
+    font-size: 2rem;
+    min-width: 64px;
+    box-sizing: border-box;
+    font-weight: 700;
+    line-height: 1.75;
+    border-radius: 10px;
+    letter-spacing: 3px;
+}
+
+.minter-container .MuiButton-contained:hover {
+    background-color: rgb(255, 2, 180, 0.3);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
 
 /*
  * Animation keyframes

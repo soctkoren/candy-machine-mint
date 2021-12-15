@@ -42,33 +42,7 @@ const CounterText = styled.span``; // add your styles here
 
 const MintContainer = styled.div``; // add your styles here
 
-const MintButton = styled(Button)`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 15px;
-  background: none;
-  color: white;
-  width: 300px;
-  height: 300px;
-  border: none;
-  font: inherit;
-  cursor: pointer;
-  border-radius: 10px;
-  text-transform: uppercase;
-  font-size: 2rem;
-  letter-spacing: 3px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  font-weight: 700;
-  &:hover {
-    background-color: rgb(255, 2, 180, 0.3);
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
-`; // add your styles here
+const MintButton = styled(Button)``; // add your styles here
 
 const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
   return (
