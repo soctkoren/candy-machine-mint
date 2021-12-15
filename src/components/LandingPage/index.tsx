@@ -42,7 +42,33 @@ const CounterText = styled.span``; // add your styles here
 
 const MintContainer = styled.div``; // add your styles here
 
-const MintButton = styled(Button)``; // add your styles here
+const MintButton = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 15px;
+  background: none;
+  color: white;
+  width: 300px;
+  height: 300px;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-weight: 700;
+  &:hover {
+    background-color: rgb(255, 2, 180, 0.3);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+`; // add your styles here
 
 const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
   return (
@@ -296,42 +322,66 @@ export default function LandingPage(props: LandingPageProps) {
                       height={189}
                     />
                   ) : null}
-                  <div>
-                    {wallet && <p>Total Available: {itemsAvailable}</p>}
-
-                    {wallet && <p>Redeemed: {itemsRedeemed}</p>}
-
-                    {wallet && <p>Remaining: {itemsRemaining}</p>}
-
-                    {wallet ? (
-                      <MintContainer>
-                        <MintButton
-                          disabled={isSoldOut || isMinting || !isActive}
-                          onClick={onMint}
-                          variant="contained"
-                        >
-                          {isSoldOut ? (
-                            "SOLD OUT"
-                          ) : isActive ? (
-                            isMinting ? (
-                              <CircularProgress />
-                            ) : (
-                              "MINT"
-                            )
-                          ) : (
-                            <Countdown
-                              date={startDate}
-                              onMount={({ completed }) =>
-                                completed && setIsActive(true)
-                              }
-                              onComplete={() => setIsActive(true)}
-                              renderer={renderCounter}
-                            />
-                          )}
-                        </MintButton>
-                      </MintContainer>
-                    ) : null}
-                  </div>
+                  {wallet && (
+                    <div>
+                      {
+                        <p className="total-quanity">
+                          Total Available: {itemsAvailable}
+                        </p>
+                      }
+                      <img
+                        className="default-mint-img"
+                        src="/static/default.png"
+                        width={300}
+                      />
+                      <div className="redeemed-group">
+                        <p>Minted: {itemsRedeemed}</p>
+                        <p>Remaining: {itemsRemaining}</p>
+                      </div>
+                      <div className="minter">
+                        <div className="minter-container">
+                          <MintContainer>
+                            <MintButton
+                              className="mint_button"
+                              disabled={isSoldOut || isMinting || !isActive}
+                              onClick={onMint}
+                              variant="contained"
+                            >
+                              {isSoldOut ? (
+                                "SOLD OUT"
+                              ) : isActive ? (
+                                isMinting ? (
+                                  <div className="loading">
+                                    <h2>MINTING</h2>
+                                    <div>
+                                      <span></span>
+                                      <span></span>
+                                      <span></span>
+                                      <span></span>
+                                      <span></span>
+                                      <span></span>
+                                      <span></span>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  "MINT"
+                                )
+                              ) : (
+                                <Countdown
+                                  date={startDate}
+                                  onMount={({ completed }) =>
+                                    completed && setIsActive(true)
+                                  }
+                                  onComplete={() => setIsActive(true)}
+                                  renderer={renderCounter}
+                                />
+                              )}
+                            </MintButton>
+                          </MintContainer>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </main>
             </>
