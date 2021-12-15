@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Button, CircularProgress, Snackbar } from "@material-ui/core";
+import { Button, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";

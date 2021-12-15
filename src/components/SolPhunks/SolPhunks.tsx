@@ -30,10 +30,7 @@ function Items() {
   );
 }
 
-function getStaticUrl(name: String) {}
-
 const SolPhunks = () => {
-  const items = Items();
   return (
     <>
       <h1 className="all_phunks">All Phunks</h1>
