@@ -230,7 +230,7 @@ export default function LandingPage(props: LandingPageProps) {
                 }
               />
               {wallet && (
-                <h1 className="wallet_short_address">
+                <h1 className="wallet_short_address wallet-full">
                   {shortenAddress(wallet.publicKey.toBase58() || "")}
                   <img
                     alt="SOL"
@@ -243,7 +243,11 @@ export default function LandingPage(props: LandingPageProps) {
                 </h1>
               )}
 
-              {!wallet ? <ConnectButton>Connect Wallet</ConnectButton> : null}
+              {!wallet ? (
+                <div className="wallet-baby wallet-full">
+                  <ConnectButton>Connect Wallet</ConnectButton>
+                </div>
+              ) : null}
             </div>
             <Snackbar
               open={alertState.open}
@@ -294,6 +298,24 @@ export default function LandingPage(props: LandingPageProps) {
                   </button>
                 </div>
                 <div className="main_right_content">
+                  {!wallet ? (
+                    <div className="wallet-baby wallet-mobile">
+                      <ConnectButton>Connect Wallet</ConnectButton>
+                    </div>
+                  ) : null}
+                  {wallet && (
+                    <h1 className="wallet_short_address wallet-mobile">
+                      {shortenAddress(wallet.publicKey.toBase58() || "")}
+                      <img
+                        alt="SOL"
+                        width={22}
+                        height={22}
+                        src="https://solana.com/branding/new/exchange/exchange-black.png"
+                        className="MuiAvatar-img"
+                      ></img>
+                      {(balance || 0).toLocaleString()}
+                    </h1>
+                  )}
                   {wallet == null ? (
                     <img
                       src="/static/main_logo.svg"

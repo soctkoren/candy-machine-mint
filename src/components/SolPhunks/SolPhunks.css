@@ -4,17 +4,17 @@
 }
 
 ul.pagination {
-    width: 800px;
+    width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
 .items {
-    width: 1100px;
+    width: 100%;
     display: flex;
-    /* justify-content: space-between; */
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .item-card {
@@ -59,4 +59,8 @@ ul.pagination {
 
 .connect {
     text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
 }

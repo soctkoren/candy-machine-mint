@@ -1,9 +1,8 @@
 .landing_page {
-    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1170px;
+    width: 82%;
 }
 
 .content {
@@ -294,4 +293,60 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+}
+
+.wallet-baby {
+    min-width: 130px;
+}
+
+.wallet-mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .header_item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        font-size: 14px;
+        padding: 20px;
+        cursor: pointer;
+    }
+    .header {
+        padding: 0px;
+    }
+    .main_left_content {
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+        padding: 0px;
+        width: 100%;
+        flex: 1;
+    }
+    .main_left_content h1 {
+        margin: 0px;
+        padding: 0px;
+    }
+    .main_right_content {
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+    }
+    .main {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        margin-bottom: 30px;
+    }
+    .wallet-mobile {
+        display: flex;
+        margin-bottom: 50px;
+    }
+    .wallet-full {
+        display: none;
+    }
 }

@@ -56,7 +56,7 @@ function Items(props: ItemsProps) {
 
   return (
     <div className="items-container">
-      {minted.length !== 0 ? (
+      {minted.length === 0 ? (
         <>
           <h2 className="minted_phunk_count">Minted</h2>
           <div className="items">
@@ -82,6 +82,7 @@ function Items(props: ItemsProps) {
 
 const SolPhunks = (props: SolPhunksPageProps) => {
   const wallet = useAnchorWallet();
+
   const [itemsRedeemed, setItemsRedeemed] = useState(-1);
   const refreshCandyMachineState = () => {
     (async () => {
@@ -103,7 +104,7 @@ const SolPhunks = (props: SolPhunksPageProps) => {
   ]);
   return (
     <>
-      {itemsRedeemed === -1 ? (
+      {itemsRedeemed !== -1 ? (
         wallet === undefined ? (
           <div className="connect-container">
             <h1 className="connect">
