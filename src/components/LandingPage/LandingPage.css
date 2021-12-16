@@ -349,4 +349,7 @@
     .wallet-full {
         display: none;
     }
+    .landing_page {
+        width: 90%;
+    }
 }
