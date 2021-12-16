@@ -225,6 +225,9 @@ export default function LandingPage(props: LandingPageProps) {
                 alt="Twitter Logo"
                 width={20}
                 height={17}
+                onClick={() =>
+                  (window.location.href = "https://twitter.com/notnotlarvalab")
+                }
               />
               {wallet && (
                 <h1 className="wallet_short_address">
@@ -337,7 +340,7 @@ export default function LandingPage(props: LandingPageProps) {
                                 "SOLD OUT"
                               ) : isActive ? (
                                 isMinting ? (
-                                 <Loading headerLabel="MINTING"/>
+                                  <Loading headerLabel="MINTING" />
                                 ) : (
                                   mindLabelText
                                 )

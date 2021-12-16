@@ -109,7 +109,7 @@ const SolPhunks = (props: SolPhunksPageProps) => {
             <h1 className="connect">
               CONNECT YOUR WALLET
               <br />
-              TO YOU WANNA SEE THE GOODS
+              TO SEE THE GOODS
             </h1>
             <img
               className="default-mint-img"
