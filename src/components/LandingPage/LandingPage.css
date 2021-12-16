@@ -317,6 +317,9 @@
     .header {
         padding: 0px;
     }
+    .hide-mobile {
+        display: none;
+    }
     .main_left_content {
         display: flex;
         flex-direction: column;

@@ -207,7 +207,7 @@ export default function LandingPage(props: LandingPageProps) {
             />
             <div className="header_action_links">
               <h1
-                className="header_item"
+                className="header_item hide-mobile"
                 onClick={() => navigate("./about", { replace: false })}
               >
                 About
