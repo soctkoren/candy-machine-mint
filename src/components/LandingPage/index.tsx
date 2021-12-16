@@ -62,6 +62,7 @@ export default function LandingPage(props: LandingPageProps) {
   const [itemsAvailable, setItemsAvailable] = useState(0);
   const [itemsRedeemed, setItemsRedeemed] = useState(0);
   const [itemsRemaining, setItemsRemaining] = useState(0);
+  const [successMintedItem, setSuccessMintedItem] = useState(-1);
 
   const [alertState, setAlertState] = useState<AlertState>({
     open: false,
@@ -73,7 +74,7 @@ export default function LandingPage(props: LandingPageProps) {
 
   const wallet = useAnchorWallet();
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
-
+  const mindLabelText = successMintedItem > -1 ? "MINT ANOTHER" : "MINT";
   const refreshCandyMachineState = () => {
     (async () => {
       if (!wallet) return;
@@ -125,6 +126,7 @@ export default function LandingPage(props: LandingPageProps) {
             message: "Congratulations! Mint succeeded!",
             severity: "success",
           });
+          setSuccessMintedItem(itemsRedeemed + 1);
         } else {
           setAlertState({
             open: true,
@@ -303,11 +305,20 @@ export default function LandingPage(props: LandingPageProps) {
                           Total Available: {itemsAvailable}
                         </p>
                       }
-                      <img
-                        className="default-mint-img"
-                        src="/static/default.png"
-                        width={300}
-                      />
+                      {successMintedItem > -1 ? (
+                        <img
+                          className="default-mint-img"
+                          src={`/static/solphunks/${successMintedItem}.png`}
+                          width={300}
+                        />
+                      ) : (
+                        <img
+                          className="default-mint-img"
+                          src="/static/default.png"
+                          width={300}
+                        />
+                      )}
+
                       <div className="redeemed-group">
                         <p>Minted: {itemsRedeemed}</p>
                         <p>Remaining: {itemsRemaining}</p>
@@ -338,7 +349,7 @@ export default function LandingPage(props: LandingPageProps) {
                                     </div>
                                   </div>
                                 ) : (
-                                  "MINT"
+                                  mindLabelText
                                 )
                               ) : (
                                 <Countdown
