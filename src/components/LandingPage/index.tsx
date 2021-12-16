@@ -20,6 +20,7 @@ import {
   mintOneToken,
   shortenAddress,
 } from "../../candy-machine";
+import Loading from "../shared/Loading/Loading";
 
 export interface LandingPageProps {
   candyMachineId: anchor.web3.PublicKey;
@@ -336,18 +337,7 @@ export default function LandingPage(props: LandingPageProps) {
                                 "SOLD OUT"
                               ) : isActive ? (
                                 isMinting ? (
-                                  <div className="loading">
-                                    <h2>MINTING</h2>
-                                    <div>
-                                      <span></span>
-                                      <span></span>
-                                      <span></span>
-                                      <span></span>
-                                      <span></span>
-                                      <span></span>
-                                      <span></span>
-                                    </div>
-                                  </div>
+                                 <Loading headerLabel="MINTING"/>
                                 ) : (
                                   mindLabelText
                                 )
@@ -373,7 +363,15 @@ export default function LandingPage(props: LandingPageProps) {
           }
         />
         <Route path="about" element={<About />} />
-        <Route path="solphunks" element={<SolPhunks />} />
+        <Route
+          path="solphunks"
+          element={
+            <SolPhunks
+              candyMachineId={props.candyMachineId}
+              connection={props.connection}
+            />
+          }
+        />
       </Routes>
     </div>
   );
