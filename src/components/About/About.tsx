@@ -17,15 +17,19 @@ const About = () => {
       <p _ngcontent-qcw-c38="">
         We've created a{" "}
         <span _ngcontent-qcw-c38="" className="pink">
-          marketplace
+          minter
         </span>{" "}
-        where users can finally buy and sell{" "}
+        where users can finally mint{" "}
         <span _ngcontent-qcw-c38="" className="pink">
           SolPhunks
         </span>{" "}
         with ease. Launched in Dec of 2021, SolPhunks has never been delisted
-        from OpenSea on any occasions and is the many NFT project to never
-        receive an official DMCA notice from{" "}
+        from OpenSea or SolSea on any occasions and is the many NFT project to
+        never receive an official DMCA notice from{" "}
+        <span _ngcontent-qcw-c38="" className="pink">
+          Not Larva Labs
+        </span>{" "}
+        {" or "}
         <span _ngcontent-qcw-c38="" className="pink">
           Larva Labs
         </span>
