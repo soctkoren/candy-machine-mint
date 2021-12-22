@@ -75,7 +75,7 @@ export default function LandingPage(props: LandingPageProps) {
 
   const wallet = useAnchorWallet();
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
-  const mindLabelText = successMintedItem > -1 ? "MINT ANOTHER" : "MINT";
+  const mindLabelText = successMintedItem > -1 ? "MINT ANOTHER" : "MINT, 0.3 SOL";
   const refreshCandyMachineState = () => {
     (async () => {
       if (!wallet) return;
