@@ -1,0 +1,10 @@
+.confetti-container {
+    position: absolute;
+    transform: translate(-200px, -100px);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    transform: translate(0, -100px);
+}

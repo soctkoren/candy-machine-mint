@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { Button, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
@@ -10,6 +10,7 @@ import About from "../About/About";
 import SolPhunks from "../SolPhunks/SolPhunks";
 import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Confetti from "../Confetti";
 import "./LandingPage.css";
 import * as anchor from "@project-serum/anchor";
 
@@ -68,6 +69,8 @@ export default function LandingPage(props: LandingPageProps) {
   const [itemsRemaining, setItemsRemaining] = useState(0);
   const [successMintedItem, setSuccessMintedItem] = useState(-1);
 
+  const [confettiCount, setConfettiCount] = useState(0);
+
   const [alertState, setAlertState] = useState<AlertState>({
     open: false,
     message: "",
@@ -79,6 +82,7 @@ export default function LandingPage(props: LandingPageProps) {
   const wallet = useAnchorWallet();
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
   const mintLabelText = successMintedItem > -1 ? "MINT ANOTHER" : "MINT";
+
   const refreshCandyMachineState = () => {
     (async () => {
       if (!wallet) return;
@@ -131,6 +135,7 @@ export default function LandingPage(props: LandingPageProps) {
             severity: "success",
           });
           setSuccessMintedItem(itemsRedeemed + 1);
+          setConfettiCount(confettiCount + 1);
         } else {
           setAlertState({
             open: true,
@@ -349,17 +354,24 @@ export default function LandingPage(props: LandingPageProps) {
                         </div>
                       }
                       {successMintedItem > -1 ? (
-                        <img
-                          className="default-mint-img"
-                          src={`/static/solphunks/${successMintedItem}.png`}
-                          width={300}
-                        />
+                        <>
+                          <div>
+                            <Confetti count={confettiCount} />
+                          </div>
+                          <img
+                            className="default-mint-img"
+                            src={`/static/solphunks/${successMintedItem}.png`}
+                            width={300}
+                          />
+                        </>
                       ) : (
-                        <img
-                          className="default-mint-img"
-                          src="/static/default.png"
-                          width={300}
-                        />
+                        <>
+                          <img
+                            className="default-mint-img"
+                            src="/static/default.png"
+                            width={300}
+                          />
+                        </>
                       )}
 
                       <div className="redeemed-group">
