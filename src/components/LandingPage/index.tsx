@@ -48,7 +48,10 @@ const MintButton = styled(Button)``; // add your styles here
 const renderCounter = ({ days, hours, minutes, seconds, completed }: any) => {
   return (
     <CounterText>
-      {hours + (days || 0) * 24} hours, {minutes} minutes, {seconds} seconds
+      <div className="counter-text-baby">
+        <p className="minting-opens">MINTING STARTS IN</p>
+        {hours + (days || 0) * 24} hours, {minutes} minutes, {seconds} seconds
+      </div>
     </CounterText>
   );
 };
@@ -70,12 +73,12 @@ export default function LandingPage(props: LandingPageProps) {
     message: "",
     severity: undefined,
   });
-
-  const [startDate, setStartDate] = useState(new Date(props.startDate));
-
+  const d = new Date(props.startDate);
+  d.setUTCSeconds(props.startDate);
+  const [startDate, setStartDate] = useState(d);
   const wallet = useAnchorWallet();
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
-  const mindLabelText = successMintedItem > -1 ? "MINT ANOTHER" : "MINT, 0.3 SOL";
+  const mintLabelText = successMintedItem > -1 ? "MINT ANOTHER" : "MINT";
   const refreshCandyMachineState = () => {
     (async () => {
       if (!wallet) return;
@@ -97,7 +100,7 @@ export default function LandingPage(props: LandingPageProps) {
       setItemsRedeemed(itemsRedeemed);
 
       setIsSoldOut(itemsRemaining === 0);
-      setStartDate(goLiveDate);
+      setStartDate(new Date(goLiveDate));
       setCandyMachine(candyMachine);
     })();
   };
@@ -327,9 +330,23 @@ export default function LandingPage(props: LandingPageProps) {
                   {wallet && (
                     <div>
                       {
-                        <p className="total-quanity">
-                          Total Available: {itemsAvailable}
-                        </p>
+                        <div className="total-container">
+                          <p className="total-quanity">
+                            Total Available: {itemsAvailable}
+                          </p>
+                          <div className="price">
+                            <div className="price-container">
+                              <img
+                                alt="SOL"
+                                src="https://solana.com/branding/new/exchange/exchange-black.png"
+                                className="sol-img"
+                                width={18}
+                                height={18}
+                              />
+                              <p>0.3</p>
+                            </div>
+                          </div>
+                        </div>
                       }
                       {successMintedItem > -1 ? (
                         <img
@@ -364,7 +381,7 @@ export default function LandingPage(props: LandingPageProps) {
                                 isMinting ? (
                                   <Loading headerLabel="MINTING" />
                                 ) : (
-                                  mindLabelText
+                                  mintLabelText
                                 )
                               ) : (
                                 <Countdown

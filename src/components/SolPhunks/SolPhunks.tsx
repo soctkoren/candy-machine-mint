@@ -22,6 +22,11 @@ interface ItemProps {
   i: number;
 }
 
+function showDefault(itemsRedeemed: number, i: number) {
+  if (itemsRedeemed === 0) return false;
+  return itemsRedeemed >= i;
+}
+
 function Items(props: ItemsProps) {
   const minted = [];
   const remaining = [];
@@ -40,7 +45,7 @@ function Items(props: ItemsProps) {
           <LazyLoadImage
             className="lazy-img"
             src={
-              props.itemsRedeemed >= props.i
+              showDefault(props.itemsRedeemed, props.i)
                 ? `/static/solphunks/${props.i}.png`
                 : "/static/default.png"
             }
