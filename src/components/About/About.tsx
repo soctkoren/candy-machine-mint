@@ -24,8 +24,8 @@ const About = () => {
           SolPhunks
         </span>{" "}
         with ease. Launched in Dec of 2021, SolPhunks has never been delisted
-        from OpenSea or SolSea on any occasions and is the many NFT project to
-        never receive an official DMCA notice from{" "}
+        from OpenSea, Solanart or SolSea on any occasions and is one of many NFT
+        projects to never receive an official DMCA notice from{" "}
         <span _ngcontent-qcw-c38="" className="pink">
           Not Larva Labs
         </span>{" "}

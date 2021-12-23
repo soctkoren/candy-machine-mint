@@ -293,6 +293,19 @@ export default function LandingPage(props: LandingPageProps) {
                     {"Not Not Larva Labs."}
                   </h1>
                   <p className="main_left_content_text">
+                    <a
+                      className="main-link"
+                      href="https://solanart.io/collections/solpunks"
+                      target="_blank"
+                    >
+                      SolPunks
+                    </a>
+                    {
+                      " is facing the wrong way in history. We stand with Phunks and face left. SolPhunks will flip SolPunks."
+                    }
+                    <br />
+                  </p>
+                  <p className="main_left_content_text">
                     {"Our lawyers said we should put something here to"}
                     {
                       " remind you that we are, in fact, definitely not Not Larva Labs or Larva Labs"
@@ -325,12 +338,19 @@ export default function LandingPage(props: LandingPageProps) {
                     </h1>
                   )}
                   {wallet == null ? (
-                    <img
-                      src="/static/main_logo.svg"
-                      alt="Not Not Larva Labs Main Logo"
-                      width={298}
-                      height={189}
-                    />
+                    <div className="default-main-right">
+                      <img
+                        src="/static/main_logo.svg"
+                        alt="Not Not Larva Labs Main Logo"
+                        width={298}
+                        height={189}
+                      />
+                      <h3 className="connect">
+                        CONNECT YOUR WALLET
+                        <br />
+                        TO SEE THE GOODS
+                      </h3>
+                    </div>
                   ) : null}
                   {wallet && (
                     <div>

@@ -343,6 +343,18 @@
     margin: 0px;
 }
 
+.main-link {
+    text-decoration: none;
+}
+
+.main-link:link {
+    color: #FF02B4
+}
+
+.default-main-right h3 {
+    transform: translateY(10px);
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     .header_item {
