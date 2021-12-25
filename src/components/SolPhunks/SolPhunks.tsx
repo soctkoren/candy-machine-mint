@@ -24,7 +24,7 @@ interface ItemProps {
 
 function showDefault(itemsRedeemed: number, i: number) {
   if (itemsRedeemed === 0) return false;
-  return itemsRedeemed >= i;
+  return itemsRedeemed > i;
 }
 
 function Items(props: ItemsProps) {
