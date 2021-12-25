@@ -134,7 +134,7 @@ export default function LandingPage(props: LandingPageProps) {
             message: "Congratulations! Mint succeeded!",
             severity: "success",
           });
-          setSuccessMintedItem(itemsRedeemed + 1);
+          setSuccessMintedItem(itemsRedeemed);
           setConfettiCount(confettiCount + 1);
         } else {
           setAlertState({

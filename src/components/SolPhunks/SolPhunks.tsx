@@ -30,8 +30,9 @@ function showDefault(itemsRedeemed: number, i: number) {
 function Items(props: ItemsProps) {
   const minted = [];
   const remaining = [];
+  console.log(props.itemsRedeemed);
   for (let i = 0; i < 10000; i++) {
-    if (props.itemsRedeemed >= i && props.itemsRedeemed !== 0) {
+    if (props.itemsRedeemed > i && props.itemsRedeemed !== 0) {
       minted.push(<Item itemsRedeemed={props.itemsRedeemed} i={i} />);
     } else {
       remaining.push(<Item itemsRedeemed={props.itemsRedeemed} i={i} />);
