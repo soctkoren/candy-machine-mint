@@ -368,7 +368,7 @@ export default function LandingPage(props: LandingPageProps) {
                                 width={18}
                                 height={18}
                               />
-                              <p>0.3</p>
+                              <p>0.1</p>
                             </div>
                           </div>
                         </div>
