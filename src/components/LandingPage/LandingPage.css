@@ -16,7 +16,7 @@
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 30px 30px;
+    padding: 20px 30px;
     margin-bottom: 20px;
 }
 
@@ -151,7 +151,7 @@
     color: rgba(var(--dark-grey), 1);
     font-size: 2.0rem;
     line-height: 1.25;
-    padding-bottom: 2.0rem;
+    padding-bottom: 1.0rem;
     flex: 1;
 }
 
@@ -170,6 +170,7 @@
     font: inherit;
     cursor: pointer;
     outline: inherit;
+    margin-bottom: 25px;
     padding: 1.0rem 2.5rem;
     background-color: #181818;
     color: white;
