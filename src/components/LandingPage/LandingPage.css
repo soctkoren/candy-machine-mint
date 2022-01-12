@@ -30,6 +30,10 @@
     cursor: pointer;
 }
 
+.connect {
+    color: white;
+}
+
 .main {
     width: 100%;
     display: flex;

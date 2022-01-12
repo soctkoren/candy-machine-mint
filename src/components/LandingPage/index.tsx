@@ -64,10 +64,11 @@ export default function LandingPage(props: LandingPageProps) {
   const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
   const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
-  const [itemsAvailable, setItemsAvailable] = useState(0);
+  const [itemsAvailable, setItemsAvailable] = useState(10000);
   const [itemsRedeemed, setItemsRedeemed] = useState(0);
   const [itemsRemaining, setItemsRemaining] = useState(0);
   const [successMintedItem, setSuccessMintedItem] = useState(-1);
+  const [hasMinted, setHasMinted] = useState(false);
 
   const [confettiCount, setConfettiCount] = useState(0);
 
@@ -103,6 +104,11 @@ export default function LandingPage(props: LandingPageProps) {
       setItemsRemaining(itemsRemaining);
       setItemsRedeemed(itemsRedeemed);
 
+      if (hasMinted) {
+        setSuccessMintedItem(itemsRedeemed);
+        setConfettiCount(confettiCount + 1);
+      }
+
       setIsSoldOut(itemsRemaining === 0);
       setStartDate(new Date(goLiveDate));
       setCandyMachine(candyMachine);
@@ -134,8 +140,7 @@ export default function LandingPage(props: LandingPageProps) {
             message: "Congratulations! Mint succeeded!",
             severity: "success",
           });
-          setSuccessMintedItem(itemsRedeemed);
-          setConfettiCount(confettiCount + 1);
+          setHasMinted(true);
         } else {
           setAlertState({
             open: true,
@@ -178,6 +183,14 @@ export default function LandingPage(props: LandingPageProps) {
     }
   };
 
+  const getConnect = () => {
+    if (wallet == null) {
+      return <p className="connect">CONNECT YOUR WALLET TO MINT</p>;
+    } else {
+      return null;
+    }
+  };
+
   useEffect(() => {
     (async () => {
       if (wallet) {
@@ -191,6 +204,7 @@ export default function LandingPage(props: LandingPageProps) {
     wallet,
     props.candyMachineId,
     props.connection,
+    itemsRedeemed,
   ]);
 
   return (
@@ -311,6 +325,11 @@ export default function LandingPage(props: LandingPageProps) {
                       " remind you that we are, in fact, definitely not Not Larva Labs or Larva Labs"
                     }
                   </p>
+                  <p className="main_left_content_text">
+                    {
+                      "I'm also busy with PAYC atm, but big things are coming for SolPhunks."
+                    }
+                  </p>
                   <button
                     className="main_button"
                     onClick={() => navigate("./about", { replace: false })}
@@ -337,100 +356,103 @@ export default function LandingPage(props: LandingPageProps) {
                       {(balance || 0).toLocaleString()}
                     </h1>
                   )}
-                  {wallet == null ? (
-                    <div className="default-main-right">
-                      <img
-                        src="/static/main_logo.svg"
-                        alt="Not Not Larva Labs Main Logo"
-                        width={298}
-                        height={189}
-                      />
-                      <h3 className="connect">
-                        CONNECT YOUR WALLET
-                        <br />
-                        TO SEE THE GOODS
-                      </h3>
-                    </div>
-                  ) : null}
-                  {wallet && (
-                    <div>
-                      {
-                        <div className="total-container">
-                          <p className="total-quanity">
-                            Total Available: {itemsAvailable}
-                          </p>
-                          <div className="price">
-                            <div className="price-container">
-                              <img
-                                alt="SOL"
-                                src="https://solana.com/branding/new/exchange/exchange-black.png"
-                                className="sol-img"
-                                width={18}
-                                height={18}
-                              />
-                              <p>0.1</p>
-                            </div>
+                  {/* {wallet != null ? (
+                    <h3 className="connect">
+                      CONNECT YOUR WALLET
+                      <br />
+                      TO MINT
+                    </h3>
+                  ) : null} */}
+                  <div>
+                    {
+                      <div className="total-container">
+                        <p className="total-quanity">
+                          Total Available: {itemsAvailable}
+                        </p>
+                        <div className="price">
+                          <div className="price-container">
+                            <img
+                              alt="SOL"
+                              src="https://solana.com/branding/new/exchange/exchange-black.png"
+                              className="sol-img"
+                              width={18}
+                              height={18}
+                            />
+                            <p>0.1</p>
                           </div>
                         </div>
-                      }
-                      {successMintedItem > -1 ? (
-                        <>
-                          <div>
-                            <Confetti count={confettiCount} />
-                          </div>
-                          <img
-                            className="default-mint-img"
-                            src={`/static/solphunks/${successMintedItem}.png`}
-                            width={300}
-                          />
-                        </>
-                      ) : (
-                        <>
-                          <img
-                            className="default-mint-img"
-                            src="/static/default.png"
-                            width={300}
-                          />
-                        </>
-                      )}
+                      </div>
+                    }
+                    {successMintedItem > -1 ? (
+                      <>
+                        <div>
+                          <Confetti count={confettiCount} />
+                        </div>
+                        <img
+                          className="default-mint-img"
+                          src={`/static/solphunks/${successMintedItem}.png`}
+                          width={300}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <img
+                          className="default-mint-img"
+                          src="/static/default.png"
+                          width={300}
+                        />
+                      </>
+                    )}
 
-                      <div className="redeemed-group">
+                    <div className="redeemed-group">
+                      {itemsRedeemed !== 0 ? (
                         <p>Minted: {itemsRedeemed}</p>
+                      ) : (
+                        <p>Minted: XXXX</p>
+                      )}
+                      {itemsRemaining !== 0 ? (
                         <p>Remaining: {itemsRemaining}</p>
-                      </div>
-                      <div className="minter">
-                        <div className="minter-container">
-                          <MintContainer>
-                            <MintButton
-                              className="mint_button"
-                              disabled={isSoldOut || isMinting || !isActive}
-                              onClick={onMint}
-                              variant="contained"
-                            >
-                              {isSoldOut ? (
-                                "SOLD OUT"
-                              ) : isActive ? (
-                                isMinting ? (
-                                  <Loading headerLabel="MINTING" />
-                                ) : (
-                                  mintLabelText
-                                )
+                      ) : (
+                        <p>Remaining: XXXX</p>
+                      )}
+                    </div>
+                    <div className="minter">
+                      <div className="minter-container">
+                        <MintContainer>
+                          <MintButton
+                            className="mint_button"
+                            disabled={isSoldOut || isMinting || !isActive}
+                            onClick={onMint}
+                            variant="contained"
+                          >
+                            {isSoldOut ? (
+                              "SOLD OUT"
+                            ) : isActive ? (
+                              isMinting ? (
+                                <Loading headerLabel="MINTING" />
                               ) : (
-                                <Countdown
-                                  date={startDate}
-                                  onMount={({ completed }) =>
-                                    completed && setIsActive(true)
-                                  }
-                                  onComplete={() => setIsActive(true)}
-                                  renderer={renderCounter}
-                                />
-                              )}
-                            </MintButton>
-                          </MintContainer>
-                        </div>
+                                mintLabelText
+                              )
+                            ) : (
+                              <>
+                                {wallet != null && (
+                                  <Countdown
+                                    date={startDate}
+                                    onMount={({ completed }) =>
+                                      completed && setIsActive(true)
+                                    }
+                                    onComplete={() => setIsActive(true)}
+                                    renderer={renderCounter}
+                                  />
+                                )}
+                                {getConnect()}
+                              </>
+                            )}
+                          </MintButton>
+                        </MintContainer>
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               </main>
             </>
