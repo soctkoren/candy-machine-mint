@@ -288,28 +288,28 @@ export default function LandingPage(props: LandingPageProps) {
               <main className="main">
                 <div className="main_left_content">
                   <h1 className="main_left_header">
-                    {"Hi! I'm John"}
+                    {"Hi! We're "}
                     <br />
-                    {"I created Not Not Larva Labs."}
+                    {"Not Not Larva Labs."}
                   </h1>
                   <p className="main_left_content_text">
+                    <a
+                      className="main-link"
+                      href="https://solanart.io/collections/solpunks"
+                      target="_blank"
+                    >
+                      SolPunks
+                    </a>
                     {
-                      "SolPhunks is a low profile drop that I created to find the true degens who believe in creators, over hype NFT pumps and dumps."
+                      " is facing the wrong way in history. We stand with Phunks and face left. SolPhunks will flip SolPunks."
                     }
                     <br />
                   </p>
                   <p className="main_left_content_text">
+                    {"Our lawyers said we should put something here to"}
                     {
-                      "I'm working on a lot of Phunky projects to flip the norm of NFTs to face left. If you like my work and you want to be on my personal whitelist for all future projects, mint a SolPhunk and HODL."
+                      " remind you that we are, in fact, definitely not Not Larva Labs or Larva Labs"
                     }
-                  </p>
-                  <p className="main_left_content_text">
-                    {
-                      "My projects will mostly be on ETH, but I choose Solana here for the low gas fees so anyone can have a chance to join the pham."
-                    }
-                  </p>
-                  <p className="main_left_content_text">
-                    {"Thanks for the support. See y'all on the metaverse!"}
                   </p>
                   <button
                     className="main_button"
